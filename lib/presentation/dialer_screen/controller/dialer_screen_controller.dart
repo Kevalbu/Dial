@@ -3,8 +3,11 @@ import '../../../core/app_export.dart';
 class DialerScreenController extends GetxController {
   @override
   void onInit() {
+
     super.onInit();
   }
+  TextEditingController pinController = TextEditingController();
+
 
 }
 
