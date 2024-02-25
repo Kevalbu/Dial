@@ -92,30 +92,72 @@ class DashBoardScreen extends GetWidget<DashBoardScreenController> {
                   debugPrint('afterClose');
                 },
                 children: [
-                  Container(
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(6),
-                        color: ColorConstant.primaryBlue),
-                    padding: EdgeInsets.symmetric(
-                        horizontal: getWidth(18), vertical: getHeight(10)),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        const Icon(
-                          Icons.person_pin_rounded,
-                          color: ColorConstant.primaryWhite,
-                        ),
-                        SizedBox(
-                          width: getWidth(10),
-                        ),
-                        Text(
-                          AppString.contact,
-                          style: DL.styleDL(
-                              fontSize: 14,
-                              fontColor: ColorConstant.primaryWhite,
-                              fontWeight: FontWeight.w600),
-                        )
-                      ],
+                  InkWell(
+                    onTap: () {
+                      showModalBottomSheet(
+                          backgroundColor: ColorConstant.primaryWhite,
+                          context: context,
+                          builder: (context) {
+                            return Column(
+                              mainAxisSize: MainAxisSize.min,
+                              children: <Widget>[
+                                ListTile(
+                                  leading: new Icon(Icons.photo),
+                                  title: new Text('Photo'),
+                                  onTap: () {
+                                    Navigator.pop(context);
+                                  },
+                                ),
+                                ListTile(
+                                  leading: new Icon(Icons.music_note),
+                                  title: new Text('Music'),
+                                  onTap: () {
+                                    Navigator.pop(context);
+                                  },
+                                ),
+                                ListTile(
+                                  leading: new Icon(Icons.videocam),
+                                  title: new Text('Video'),
+                                  onTap: () {
+                                    Navigator.pop(context);
+                                  },
+                                ),
+                                ListTile(
+                                  leading: new Icon(Icons.share),
+                                  title: new Text('Share'),
+                                  onTap: () {
+                                    Navigator.pop(context);
+                                  },
+                                ),
+                              ],
+                            );
+                          });
+                    },
+                    child: Container(
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(6),
+                          color: ColorConstant.primaryBlue),
+                      padding: EdgeInsets.symmetric(
+                          horizontal: getWidth(18), vertical: getHeight(10)),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          const Icon(
+                            Icons.person_pin_rounded,
+                            color: ColorConstant.primaryWhite,
+                          ),
+                          SizedBox(
+                            width: getWidth(10),
+                          ),
+                          Text(
+                            AppString.contact,
+                            style: DL.styleDL(
+                                fontSize: 14,
+                                fontColor: ColorConstant.primaryWhite,
+                                fontWeight: FontWeight.w600),
+                          )
+                        ],
+                      ),
                     ),
                   ),
                   Container(

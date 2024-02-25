@@ -22,6 +22,10 @@ class AppString {
   static const String phone = 'Phone';
   static const String contact = 'Contact';
   static const String lists = 'Lists';
+  static const String add = 'Add';
+  static const String options = 'Options';
+  static const String phonebook = 'Phonebook';
+  static const String importExel = 'Import Exel/CSV';
   static const String microPhone = 'MicroPhone';
   static const String notification = 'Notification';
   static const String location = 'Location';
