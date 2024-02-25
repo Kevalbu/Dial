@@ -30,7 +30,9 @@ class DialerScreen extends GetWidget<DialerScreenController> {
                 ),
               ],
             ),
-            SizedBox(height: getHeight(25),),
+            SizedBox(
+              height: getHeight(25),
+            ),
             Container(
               decoration: BoxDecoration(
                   boxShadow: const [
@@ -186,33 +188,45 @@ class DialerScreen extends GetWidget<DialerScreenController> {
               children: [
                 Container(
                   height: getHeight(100),
-                  width: getWidth(150),decoration: BoxDecoration(borderRadius: BorderRadius.circular(10),color: ColorConstant.greyColor72,),
-
-                  child: Column(mainAxisAlignment: MainAxisAlignment.center,
+                  width: getWidth(150),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(10),
+                    color: ColorConstant.greyColor72,
+                  ),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text('Pending'),
-                      Text('9',style: DL.styleDL(
-                        fontSize: (20),
-                        fontColor: ColorConstant.primaryBlack,
-                        fontWeight: FontWeight.w400,
-                      ),),
-
+                      Text(
+                        '9',
+                        style: DL.styleDL(
+                          fontSize: (20),
+                          fontColor: ColorConstant.primaryBlack,
+                          fontWeight: FontWeight.w400,
+                        ),
+                      ),
                     ],
                   ),
                 ),
                 Container(
                   height: getHeight(100),
-                  width: getWidth(150),decoration: BoxDecoration(borderRadius: BorderRadius.circular(10),color: ColorConstant.greyColor72,),
-
-                  child: Column(mainAxisAlignment: MainAxisAlignment.center,
+                  width: getWidth(150),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(10),
+                    color: ColorConstant.greyColor72,
+                  ),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text('Done'),
-                      Text('9',style: DL.styleDL(
-                        fontSize: (20),
-                        fontColor: ColorConstant.primaryBlack,
-                        fontWeight: FontWeight.w400,
-                      ),),
-
+                      Text(
+                        '9',
+                        style: DL.styleDL(
+                          fontSize: (20),
+                          fontColor: ColorConstant.primaryBlack,
+                          fontWeight: FontWeight.w400,
+                        ),
+                      ),
                     ],
                   ),
                 ),
