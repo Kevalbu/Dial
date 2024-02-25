@@ -15,7 +15,7 @@ class SplashScreenController extends GetxController {
       } else {
         Get.offAllNamed(AppRoutes.dashboardScreenRout);
       }
-      Get.offAllNamed(AppRoutes.permissionScreenRout);
+      // Get.offAllNamed(AppRoutes.permissionScreenRout);
     });
   }
 }

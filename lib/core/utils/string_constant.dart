@@ -16,8 +16,12 @@ class AppString {
   static const String settings = 'Settings';
   static const String check = 'Check';
   static const String finish = 'Finish';
+  static const String manual = 'Manual Dialer';
+  static const String dialPad = 'DIALPAD';
+  static const String recentCalls = 'RECENT CALLS';
   static const String phone = 'Phone';
   static const String contact = 'Contact';
+  static const String lists = 'Lists';
   static const String microPhone = 'MicroPhone';
   static const String notification = 'Notification';
   static const String location = 'Location';

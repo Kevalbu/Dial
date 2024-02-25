@@ -24,22 +24,6 @@ class DialerScreen extends GetWidget<DialerScreenController> {
               fontWeight: FontWeight.bold,
               fontColor: ColorConstant.primaryBlue),
         )),
-        NumPad(
-          type: '-',
-          controller: controllerD.pinController,
-          delete: () {
-            HapticFeedback.lightImpact();
-
-            if (controllerD.pinController.text.isNotEmpty) {
-              controllerD.pinController.text = controllerD.pinController.text
-                  .substring(0, controllerD.pinController.text.length - 1);
-            }
-          },
-          // do something with the input numbers
-          onSubmit: () {
-            debugPrint('Your code: ${controllerD.pinController.text}');
-          },
-        ),
       ],
     );
   }

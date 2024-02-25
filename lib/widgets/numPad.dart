@@ -48,12 +48,7 @@ class NumPad extends StatelessWidget {
                   type: type),
             ],
           ),
-          SizedBox(height: getHeight(10)),
-          Padding(
-            padding: EdgeInsets.symmetric(horizontal: getWidth(20)),
-            child: Divider(),
-          ),
-          SizedBox(height: getHeight(10)),
+
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
@@ -74,12 +69,7 @@ class NumPad extends StatelessWidget {
                   type: type),
             ],
           ),
-          SizedBox(height: getHeight(10)),
-          Padding(
-            padding: EdgeInsets.symmetric(horizontal: getWidth(20)),
-            child: Divider(),
-          ),
-          SizedBox(height: getHeight(10)),
+
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
@@ -100,18 +90,13 @@ class NumPad extends StatelessWidget {
                   type: type),
             ],
           ),
-          SizedBox(height: getHeight(10)),
-          Padding(
-            padding: EdgeInsets.symmetric(horizontal: getWidth(20)),
-            child: Divider(),
-          ),
-          SizedBox(height: getHeight(10)),
+
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
               // this button is used to delete the last number
               buttonWidget(
-                  number: '.',
+                  number: '+',
                   context: context,
                   controller: controller,
                   type: type),
@@ -149,68 +134,71 @@ buttonWidget(
     required BuildContext context,
     required String type,
     required TextEditingController controller}) {
-  return InkWell(
-    onTap: () {
-      HapticFeedback.lightImpact();
-      if (type == '-') {
-        controller.text += number;
-      }
-      // else{
-      //   if (type == 'BIRTHDATE') {
-      //     if (controller.text.length <= 9) {
-      //       controller.text += number.toString();
-      //       log('message ${controller.text}');
-      //       if (controller.text.length == 2) {
-      //         controller.text += '/';
-      //       }
-      //       log('message1 ${controller.text}');
-      //       if (controller.text.length == 5) {
-      //         controller.text += '/';
-      //       }
-      //       log('message2 ${controller.text}');
-      //     }
-      //   }
-      //   else if (type == 'SNN') {
-      //     if (controller.text.length <= 8) {
-      //       controller.text += number.toString();
-      //     }
-      //   }
-      //   else if(type=='PHONE'){
-      //     if(controller.text.length<=16) {
-      //       if (controller.text.length <= 0) {
-      //         controller.text += '+';
-      //       }
-      //       controller.text += number.toString();
-      //       if (controller.text.length == 2) {
-      //         controller.text += ' ';
-      //       }
-      //       if (controller.text.length == 3) {
-      //         controller.text += '(';
-      //       }
-      //       if (controller.text.length == 7) {
-      //         controller.text += ')';
-      //       }
-      //       if (controller.text.length == 8) {
-      //         controller.text += ' ';
-      //       }
-      //       if (controller.text.length == 12) {
-      //         controller.text += '-';
-      //       }
-      //       log('message5 ${controller.text}');
-      //     }}
-      //   else if(type=='OTP'){
-      //     if(controller.text.length <=5){
-      //       controller.text += number;
-      //     }} else if(type=='OTP4'){
-      //     if(controller.text.length <=3){
-      //       controller.text += number;
-      //     }}
-      // }
-    },
-    child: Container(
-      height: MediaQuery.of(context).size.height / 18,
-      width: MediaQuery.of(context).size.width / 4.75,
-      /* decoration: BoxDecoration(
+  return Material(
+      color: ColorConstant.primaryWhite,
+      child: InkWell(
+        onTap: () {
+          HapticFeedback.lightImpact();
+          if (type == '-') {
+            controller.text += number;
+          }
+          // else{
+          //   if (type == 'BIRTHDATE') {
+          //     if (controller.text.length <= 9) {
+          //       controller.text += number.toString();
+          //       log('message ${controller.text}');
+          //       if (controller.text.length == 2) {
+          //         controller.text += '/';
+          //       }
+          //       log('message1 ${controller.text}');
+          //       if (controller.text.length == 5) {
+          //         controller.text += '/';
+          //       }
+          //       log('message2 ${controller.text}');
+          //     }
+          //   }
+          //   else if (type == 'SNN') {
+          //     if (controller.text.length <= 8) {
+          //       controller.text += number.toString();
+          //     }
+          //   }
+          //   else if(type=='PHONE'){
+          //     if(controller.text.length<=16) {
+          //       if (controller.text.length <= 0) {
+          //         controller.text += '+';
+          //       }
+          //       controller.text += number.toString();
+          //       if (controller.text.length == 2) {
+          //         controller.text += ' ';
+          //       }
+          //       if (controller.text.length == 3) {
+          //         controller.text += '(';
+          //       }
+          //       if (controller.text.length == 7) {
+          //         controller.text += ')';
+          //       }
+          //       if (controller.text.length == 8) {
+          //         controller.text += ' ';
+          //       }
+          //       if (controller.text.length == 12) {
+          //         controller.text += '-';
+          //       }
+          //       log('message5 ${controller.text}');
+          //     }}
+          //   else if(type=='OTP'){
+          //     if(controller.text.length <=5){
+          //       controller.text += number;
+          //     }} else if(type=='OTP4'){
+          //     if(controller.text.length <=3){
+          //       controller.text += number;
+          //     }}
+          // }
+        },
+        splashColor: ColorConstant.greyText.withOpacity(0.4),
+        child: SizedBox(
+          height: MediaQuery.of(context).size.height / 13,
+          width: MediaQuery.of(context).size.width / 3.50,
+          /* decoration: BoxDecoration(
         color: ColorConstant.primaryWhite,
         borderRadius: BorderRadius.only(
             topLeft: Radius.circular(10),
@@ -220,29 +208,30 @@ buttonWidget(
         ),
 
       ),*/
-      child: Center(child: Text(number.toString(), style: DL.styleDL())),
-    ),
-  );
+          child: Center(
+              child: Text(number.toString(),
+                  style:
+                      DL.styleDL(fontSize: 18, fontWeight: FontWeight.bold))),
+        ),
+      ));
 }
 
 iconButtonWidget(
     {required BuildContext context, required VoidCallback function}) {
-  return InkWell(
-    onTap: function,
-    child: Container(
-      height: MediaQuery.of(context).size.height / 18,
-      width: MediaQuery.of(context).size.width / 4.75,
-      /* decoration:  BoxDecoration(
-        color: ColorConstant.primaryWhite,
-        borderRadius: BorderRadius.only(
-            topLeft: Radius.circular(10),
-            topRight: Radius.circular(10),
-            bottomLeft: Radius.circular(10),
-            bottomRight: Radius.circular(10)
-        ),
-
-      ),*/
-      child: Center(child: Icon(Icons.backspace_outlined)),
+  return Material(
+    color: ColorConstant.primaryWhite,
+    child: InkWell(
+      onTap: function,
+      splashColor: ColorConstant.red.withOpacity(0.1),
+      child: SizedBox(
+        height: MediaQuery.of(context).size.height / 13,
+        width: MediaQuery.of(context).size.width / 3.50,
+        child: Center(
+            child: Icon(
+          Icons.backspace,
+          color: ColorConstant.red,
+        )),
+      ),
     ),
   );
 }

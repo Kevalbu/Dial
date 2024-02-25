@@ -1,3 +1,5 @@
+import 'package:dial/presentation/custom_dialer_screen/binding/custom_dialer_screen_binding.dart';
+import 'package:dial/presentation/custom_dialer_screen/custom_dialer_screen.dart';
 import 'package:dial/presentation/dashboard_screen/binding/dashboard_screen_binding.dart';
 import 'package:dial/presentation/dashboard_screen/dashboard_screen.dart';
 import 'package:dial/presentation/login_screen/binding/login_screen_binding.dart';
@@ -14,6 +16,7 @@ class AppRoutes {
   static const String loginScreenRoute = '/login_screen';
   static const String dashboardScreenRout = '/dashboard_screen';
   static const String permissionScreenRout = '/permission_screen';
+  static const String customDialerScreenRout = '/custom_dialer_screen';
 
   static List<GetPage> pages = [
     GetPage(
@@ -44,6 +47,14 @@ class AppRoutes {
         page: () => DashBoardScreen(),
         bindings: [
           DashBoardScreenBinding(),
+        ],
+        transition: Transition.downToUp,
+        transitionDuration: const Duration(milliseconds: 150)),
+    GetPage(
+        name: customDialerScreenRout,
+        page: () => CustomDialerScreen(),
+        bindings: [
+          CustomDialerScreenBinding(),
         ],
         transition: Transition.downToUp,
         transitionDuration: const Duration(milliseconds: 150)),

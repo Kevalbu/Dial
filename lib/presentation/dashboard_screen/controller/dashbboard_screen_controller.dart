@@ -2,12 +2,14 @@ import 'package:dial/presentation/crm_screen/crm_screen.dart';
 import 'package:dial/presentation/dialer_screen/dialer_screen.dart';
 import 'package:dial/presentation/settings_screen/settings_screen.dart';
 import 'package:dial/presentation/tasks_screen/tasks_screen.dart';
+import 'package:flutter_expandable_fab/flutter_expandable_fab.dart';
 
 import '../../../core/app_export.dart';
 
 class DashBoardScreenController extends GetxController {
   var tabIndex = 0.obs;
   DateTime? currentBackPressTime;
+  final key = GlobalKey<ExpandableFabState>();
 
   final pages = [
     DialerScreen(),

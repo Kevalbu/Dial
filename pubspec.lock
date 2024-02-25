@@ -65,6 +65,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.1.1"
+  call_log:
+    dependency: "direct main"
+    description:
+      name: call_log
+      sha256: "943fdc3cd1b2a395633817f4b66267c93accb38d359da4d95db1e389f8f898d6"
+      url: "https://pub.dev"
+    source: hosted
+    version: "4.0.0"
   characters:
     dependency: transitive
     description:
@@ -278,22 +286,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "3.3.1"
-  flutter_dialpad:
+  flutter_expandable_fab:
     dependency: "direct main"
     description:
-      name: flutter_dialpad
-      sha256: "118d9a87eee9af79f05c5a023eea45bcb0ae02e6516b77d5baa34cf4411064c0"
+      name: flutter_expandable_fab
+      sha256: "2aa5735bebcdbc49f43bcb32a29f9f03a9b7029212b8cd9837ae332ab2edf647"
       url: "https://pub.dev"
     source: hosted
-    version: "1.0.5"
-  flutter_dtmf:
-    dependency: transitive
-    description:
-      name: flutter_dtmf
-      sha256: "0064a8d2f0d06b4b8e7cea1f78017fc2a70d2d59c004d8c2b837ac4d222bb95a"
-      url: "https://pub.dev"
-    source: hosted
-    version: "2.0.2"
+    version: "2.0.0"
   flutter_lints:
     dependency: "direct dev"
     description:
@@ -326,14 +326,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "7.0.0+1"
-  flutter_masked_text2:
-    dependency: transitive
-    description:
-      name: flutter_masked_text2
-      sha256: "5ccf6f1f8b7b7a8025e3fbaea48bff0aa7e7e9512c723e26138a0b24f31ca4d8"
-      url: "https://pub.dev"
-    source: hosted
-    version: "0.9.1"
   flutter_svg:
     dependency: "direct main"
     description:
