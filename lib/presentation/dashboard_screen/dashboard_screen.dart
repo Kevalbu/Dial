@@ -17,9 +17,7 @@ class DashBoardScreen extends GetWidget<DashBoardScreenController> {
         canPop: true,
         onPopInvoked: controller.onWillPop,
         child: Obx(
-          () => Column(
-            children: [controller.pages[controller.tabIndex.value]],
-          ),
+          () => controller.pages[controller.tabIndex.value],
         ),
       ),
       floatingActionButton: Container(

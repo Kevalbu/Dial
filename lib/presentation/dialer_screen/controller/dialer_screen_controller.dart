@@ -3,21 +3,12 @@ import '../../../core/app_export.dart';
 class DialerScreenController extends GetxController {
   @override
   void onInit() {
-    changeRoute();
+
     super.onInit();
   }
   TextEditingController pinController = TextEditingController();
 
-  void changeRoute() {
-    String isLogin = PrefUtils.getString(PrefsKey.authToken);
-    Future.delayed(const Duration(milliseconds: 3000), () {
-      if (isLogin == '0') {
-        Get.offAllNamed(AppRoutes.loginScreenRoute);
-      } else {
-        Get.offAllNamed(AppRoutes.dashboardScreenRout);
-      }
-    });
-  }
+
 }
 
 // Future<void> callDeleteAccountApi() async {
