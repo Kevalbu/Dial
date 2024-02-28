@@ -1,4 +1,5 @@
 import 'package:dial/core/app_export.dart';
+import 'package:dial/presentation/call_dial_detail_screen/call_dial_detail_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get_state_manager/src/simple/get_view.dart';
 import 'package:dial/core/utils/app_fonts.dart';
