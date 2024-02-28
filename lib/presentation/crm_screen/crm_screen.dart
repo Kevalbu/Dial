@@ -114,7 +114,8 @@ class CRMScreen extends GetWidget<CRMScreenController> {
                                 Row(
                                   children: [
                                     const Icon(
-                                      Icons.arrow_forward_ios_sharp,
+
+                                      Icons.label_important,
                                       color: ColorConstant.primaryWhite,
                                     ),
                                     Text(

@@ -49,6 +49,8 @@ dependencies:
   shared_preferences: ^2.0.15
   call_log: ^4.0.0
   flutter_expandable_fab: ^2.0.0
+  dropdown_button2: ^2.3.9
+  date_picker_plus: ^2.1.0
 
 dev_dependencies:
   flutter_test:
