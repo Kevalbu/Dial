@@ -1,3 +1,5 @@
+import 'package:dial/presentation/add_new_contact_screen/add_new_contact_screen.dart';
+import 'package:dial/presentation/add_new_contact_screen/binding/add_new_contact_screen_binding.dart';
 import 'package:dial/presentation/call_dial_detail_screen/binding/call_dial_detail_screen_binding.dart';
 import 'package:dial/presentation/call_dial_detail_screen/call_dial_detail_screen.dart';
 import 'package:dial/presentation/custom_dialer_screen/binding/custom_dialer_screen_binding.dart';
@@ -20,6 +22,7 @@ class AppRoutes {
   static const String permissionScreenRout = '/permission_screen';
   static const String callDialDetailScreenRout = '/call_dial_detail_screen';
   static const String customDialerScreenRout = '/custom_dialer_screen';
+  static const String addNewContactScreenRout = '/add_new_contact_screen';
 
   static List<GetPage> pages = [
     GetPage(
@@ -55,7 +58,7 @@ class AppRoutes {
         transitionDuration: const Duration(milliseconds: 150)),
     GetPage(
         name: customDialerScreenRout,
-        page: () => CustomDialerScreen(),
+        page: () => const CustomDialerScreen(),
         bindings: [
           CustomDialerScreenBinding(),
         ],
@@ -63,9 +66,17 @@ class AppRoutes {
         transitionDuration: const Duration(milliseconds: 150)),
     GetPage(
         name: callDialDetailScreenRout,
-        page: () => CallDialDetailScreen(),
+        page: () => const CallDialDetailScreen(),
         bindings: [
           CallDialDetailScreenBinding(),
+        ],
+        transition: Transition.downToUp,
+        transitionDuration: const Duration(milliseconds: 150)),
+    GetPage(
+        name: addNewContactScreenRout,
+        page: () => const AddNewContactScreen(),
+        bindings: [
+          AddNewContactScreenBinding(),
         ],
         transition: Transition.downToUp,
         transitionDuration: const Duration(milliseconds: 150)),

@@ -130,42 +130,39 @@ class DialerScreen extends GetWidget<DialerScreenController> {
                             color: ColorConstant.primaryWhite,
                           ),
                           child: Center(
-                              child: Text(
-                            '10',
-                            style: TextStyle(
-                              color: ColorConstant.primaryBlue,
+                              child: Obx(
+                            () => Text(
+                              controllerD.start.value.toString(),
+                              style: TextStyle(
+                                color: ColorConstant.primaryBlue,
+                              ),
                             ),
                           )),
                         ),
                         Row(
                           children: [
                             Container(
-                                height: getHeight(20),
-                                width: getWidth(20),
                                 decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(30),
                                   color: ColorConstant.primaryWhite,
                                 ),
-                                child: Center(
-                                    child: Icon(
+                                child: Icon(
                                   Icons.double_arrow,
                                   color: ColorConstant.primaryBlue,
-                                ))),
+                                )),
                             SizedBox(
                               width: getWidth(20),
                             ),
                             Container(
-                                height: getHeight(20),
-                                width: getWidth(20),
                                 decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(30),
                                   color: ColorConstant.primaryWhite,
                                 ),
-                                child: Center(
-                                    child: Icon(
+                                child: Icon(
                                   Icons.history,
+                                  size: getHeight(20),
                                   color: ColorConstant.primaryBlue,
-                                ))),
+                                )),
                           ],
                         ),
                       ],
@@ -178,11 +175,23 @@ class DialerScreen extends GetWidget<DialerScreenController> {
               height: getHeight(40),
             ),
             SizedBox(
-                width: getWidth(180),
-                child:
-                    AppElevatedButton(buttonName: 'START', onPressed: () {
-                     Get.toNamed(AppRoutes.callDialDetailScreenRout);
-                    })),
+                width: getWidth(160),
+                child: Obx(
+                  () => AppElevatedButton(
+                    buttonName: controllerD.startTime.value
+                        ? AppString.stop
+                        : AppString.start,
+                    buttonColor: controllerD.startTime.value
+                        ? ColorConstant.red
+                        : ColorConstant.primaryBlue,
+                    onPressed: () {
+                      controllerD.startTime.value
+                          ? controllerD.stopTimer()
+                          : controllerD.startTimer();
+                    },
+                    showTextIcon: true,
+                  ),
+                )),
             SizedBox(
               height: getHeight(20),
             ),

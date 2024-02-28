@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:dial/core/app_export.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_expandable_fab/flutter_expandable_fab.dart';
@@ -14,6 +16,109 @@ class DashBoardScreen extends GetWidget<DashBoardScreenController> {
     sizeCalculate(context);
 
     return Scaffold(
+      backgroundColor: ColorConstant.primaryWhite,
+      appBar: AppBar(
+        automaticallyImplyLeading: false,
+        backgroundColor: ColorConstant.primaryWhite,
+        surfaceTintColor: ColorConstant.primaryWhite,
+        actions: [
+          Obx(
+            () => controller.tabIndex.value == 0 ||
+                    controller.tabIndex.value == 1
+                ? InkWell(
+                    onTap: () {
+                      showModalBottomSheet(
+                          isScrollControlled: true,
+                          backgroundColor: ColorConstant.primaryWhite,
+                          context: context,
+                          builder: (context) {
+                            return Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: <Widget>[
+                                SizedBox(
+                                  height: getHeight(20),
+                                ),
+                                AppBar(
+                                  actions: [
+                                    TextButton(
+                                      child: Text(
+                                        AppString.close,
+                                        style: DL.styleDL(
+                                            fontWeight: FontWeight.w500,
+                                            fontColor:
+                                                ColorConstant.primaryBlue,
+                                            fontSize: 16),
+                                      ),
+                                      onPressed: () {
+                                        Get.back();
+                                      },
+                                    ),
+                                    SizedBox(
+                                      width: getWidth(10),
+                                    )
+                                  ],
+                                ),
+                                Expanded(
+                                  child: ListView(
+                                    padding: EdgeInsets.all(8.0),
+                                    children: controller.lists
+                                        .map((timeValue) => Obx(
+                                              () => RadioListTile<int>(
+                                                groupValue: controller
+                                                    .currentTimeValue.value,
+                                                title: Text(timeValue.value),
+                                                value: timeValue.key,
+                                                onChanged: (val) {
+                                                  debugPrint('VAL = $val');
+                                                  controller.currentTimeValue
+                                                      .value = val!;
+                                                  controller.selectedListItem
+                                                      .value = timeValue.value;
+                                                  Get.back();
+                                                },
+                                              ),
+                                            ))
+                                        .toList(),
+                                  ),
+                                ),
+                              ],
+                            );
+                          });
+                    },
+                    child: Container(
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(2),
+                          border: Border.all(color: ColorConstant.primaryBlue)),
+                      padding: EdgeInsets.all(5),
+                      child: Row(
+                        children: [
+                          Obx(
+                            () => Text(
+                              'List: ${controller.selectedListItem.value}',
+                              style: DL.styleDL(
+                                  fontSize: 14,
+                                  fontColor: ColorConstant.primaryBlue,
+                                  fontWeight: FontWeight.w500),
+                            ),
+                          ),
+                          SizedBox(
+                            width: getWidth(4),
+                          ),
+                          Icon(
+                            Icons.keyboard_arrow_down_sharp,
+                            color: ColorConstant.primaryBlue,
+                          )
+                        ],
+                      ),
+                    ),
+                  )
+                : SizedBox.shrink(),
+          ),
+          SizedBox(
+            width: getWidth(16),
+          )
+        ],
+      ),
       body: Stack(
         children: [
           PopScope(
@@ -99,36 +204,84 @@ class DashBoardScreen extends GetWidget<DashBoardScreenController> {
                           context: context,
                           builder: (context) {
                             return Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
                               mainAxisSize: MainAxisSize.min,
                               children: <Widget>[
+                                Padding(
+                                  padding: EdgeInsets.symmetric(
+                                      vertical: getHeight(15),
+                                      horizontal: getWidth(20)),
+                                  child: Text(
+                                    AppString.options,
+                                    style: DL.styleDL(fontSize: 14),
+                                  ),
+                                ),
                                 ListTile(
-                                  leading: new Icon(Icons.photo),
-                                  title: new Text('Photo'),
+                                  leading: Icon(
+                                    Icons.person_pin,
+                                    size: getHeight(30),
+                                    color: ColorConstant.primaryBlue,
+                                  ),
+                                  title: Text(
+                                    AppString.add,
+                                    style: DL.styleDL(
+                                        fontSize: 14,
+                                        fontWeight: FontWeight.w500,
+                                        fontColor: ColorConstant.primaryBlue),
+                                  ),
                                   onTap: () {
-                                    Navigator.pop(context);
+                                    Get.back();
+                                    Get.toNamed(
+                                        AppRoutes.addNewContactScreenRout);
                                   },
                                 ),
                                 ListTile(
-                                  leading: new Icon(Icons.music_note),
-                                  title: new Text('Music'),
-                                  onTap: () {
-                                    Navigator.pop(context);
-                                  },
+                                  leading: Icon(
+                                    Icons.person_pin_rounded,
+                                    size: getHeight(30),
+                                    color: ColorConstant.primaryBlue,
+                                  ),
+                                  title: Text(
+                                    AppString.phonebook,
+                                    style: DL.styleDL(
+                                        fontSize: 14,
+                                        fontWeight: FontWeight.w500,
+                                        fontColor: ColorConstant.primaryBlue),
+                                  ),
+                                  onTap: () {},
                                 ),
                                 ListTile(
-                                  leading: new Icon(Icons.videocam),
-                                  title: new Text('Video'),
-                                  onTap: () {
-                                    Navigator.pop(context);
-                                  },
+                                  leading: Icon(
+                                    Icons.download,
+                                    size: getHeight(30),
+                                    color: ColorConstant.primaryBlue,
+                                  ),
+                                  title: Text(
+                                    AppString.importExel,
+                                    style: DL.styleDL(
+                                        fontSize: 14,
+                                        fontWeight: FontWeight.w500,
+                                        fontColor: ColorConstant.primaryBlue),
+                                  ),
+                                  onTap: () {},
                                 ),
-                                ListTile(
-                                  leading: new Icon(Icons.share),
-                                  title: new Text('Share'),
-                                  onTap: () {
-                                    Navigator.pop(context);
-                                  },
-                                ),
+                                Padding(
+                                  padding: EdgeInsets.symmetric(
+                                      vertical: getHeight(20),
+                                      horizontal: getWidth(10)),
+                                  child: TextButton(
+                                    onPressed: () {
+                                      Get.back();
+                                    },
+                                    child: Text(
+                                      AppString.cancel,
+                                      style: DL.styleDL(
+                                          fontSize: 14,
+                                          fontWeight: FontWeight.w500,
+                                          fontColor: ColorConstant.red),
+                                    ),
+                                  ),
+                                )
                               ],
                             );
                           });
@@ -160,30 +313,154 @@ class DashBoardScreen extends GetWidget<DashBoardScreenController> {
                       ),
                     ),
                   ),
-                  Container(
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(6),
-                        color: ColorConstant.primaryBlue),
-                    padding: EdgeInsets.symmetric(
-                        horizontal: getWidth(18), vertical: getHeight(10)),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        const Icon(
-                          Icons.list,
-                          color: ColorConstant.primaryWhite,
-                        ),
-                        SizedBox(
-                          width: getWidth(10),
-                        ),
-                        Text(
-                          AppString.lists,
-                          style: DL.styleDL(
-                              fontSize: 14,
-                              fontColor: ColorConstant.primaryWhite,
-                              fontWeight: FontWeight.w600),
-                        )
-                      ],
+                  InkWell(
+                    onTap: () {
+                      showModalBottomSheet(
+                          backgroundColor: ColorConstant.primaryWhite,
+                          context: context,
+                          builder: (context) {
+                            return Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              mainAxisSize: MainAxisSize.min,
+                              children: <Widget>[
+                                Padding(
+                                  padding: EdgeInsets.symmetric(
+                                      vertical: getHeight(15),
+                                      horizontal: getWidth(20)),
+                                  child: Text(
+                                    AppString.list,
+                                    style: DL.styleDL(fontSize: 14),
+                                  ),
+                                ),
+                                ListTile(
+                                  leading: Container(
+                                      height: getHeight(22),
+                                      width: getHeight(22),
+                                      decoration: BoxDecoration(
+                                          borderRadius:
+                                              BorderRadius.circular(100),
+                                          color: ColorConstant.primaryBlue),
+                                      child: Center(
+                                        child: Icon(
+                                          Icons.add,
+                                          color: ColorConstant.primaryWhite,
+                                        ),
+                                      )),
+                                  title: Text(
+                                    AppString.ne0w,
+                                    style: DL.styleDL(
+                                        fontSize: 14,
+                                        fontWeight: FontWeight.w500,
+                                        fontColor: ColorConstant.primaryBlue),
+                                  ),
+                                  onTap: () {},
+                                ),
+                                ListTile(
+                                  leading: Icon(
+                                    Icons.sync,
+                                    size: getHeight(30),
+                                    color: ColorConstant.primaryBlue,
+                                  ),
+                                  title: Text(
+                                    AppString.rechurn,
+                                    style: DL.styleDL(
+                                        fontSize: 14,
+                                        fontWeight: FontWeight.w500,
+                                        fontColor: ColorConstant.primaryBlue),
+                                  ),
+                                  onTap: () {},
+                                ),
+                                ListTile(
+                                  leading: Icon(
+                                    Icons.arrow_circle_up_rounded,
+                                    size: getHeight(30),
+                                    color: ColorConstant.primaryBlue,
+                                  ),
+                                  title: Text(
+                                    AppString.export,
+                                    style: DL.styleDL(
+                                        fontSize: 14,
+                                        fontWeight: FontWeight.w500,
+                                        fontColor: ColorConstant.primaryBlue),
+                                  ),
+                                  onTap: () {},
+                                ),
+                                ListTile(
+                                  leading: Icon(
+                                    Icons.clear_all,
+                                    size: getHeight(30),
+                                    color: ColorConstant.primaryBlue,
+                                  ),
+                                  title: Text(
+                                    AppString.clear,
+                                    style: DL.styleDL(
+                                        fontSize: 14,
+                                        fontWeight: FontWeight.w500,
+                                        fontColor: ColorConstant.primaryBlue),
+                                  ),
+                                  onTap: () {},
+                                ),
+                                ListTile(
+                                  leading: Icon(
+                                    Icons.delete_forever,
+                                    size: getHeight(30),
+                                    color: ColorConstant.red,
+                                  ),
+                                  title: Text(
+                                    AppString.delete,
+                                    style: DL.styleDL(
+                                        fontSize: 14,
+                                        fontWeight: FontWeight.w500,
+                                        fontColor: ColorConstant.red),
+                                  ),
+                                  onTap: () {},
+                                ),
+                                Padding(
+                                  padding: EdgeInsets.symmetric(
+                                      vertical: getHeight(20),
+                                      horizontal: getWidth(10)),
+                                  child: TextButton(
+                                    onPressed: () {
+                                      Get.back();
+                                    },
+                                    child: Text(
+                                      AppString.cancel,
+                                      style: DL.styleDL(
+                                          fontSize: 14,
+                                          fontWeight: FontWeight.w500,
+                                          fontColor: ColorConstant.red),
+                                    ),
+                                  ),
+                                )
+                              ],
+                            );
+                          });
+                    },
+                    child: Container(
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(6),
+                          color: ColorConstant.primaryBlue),
+                      padding: EdgeInsets.symmetric(
+                          horizontal: getWidth(18), vertical: getHeight(10)),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          const Icon(
+                            Icons.list,
+                            color: ColorConstant.primaryWhite,
+                          ),
+                          SizedBox(
+                            width: getWidth(10),
+                          ),
+                          Text(
+                            AppString.lists,
+                            style: DL.styleDL(
+                                fontSize: 14,
+                                fontColor: ColorConstant.primaryWhite,
+                                fontWeight: FontWeight.w600),
+                          )
+                        ],
+                      ),
                     ),
                   ),
                 ],
@@ -247,7 +524,12 @@ class DashBoardScreen extends GetWidget<DashBoardScreenController> {
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Icon(icon),
+              Icon(
+                icon,
+                color: controller.tabIndex.value == index
+                    ? ColorConstant.primaryBlue
+                    : ColorConstant.primaryBlack,
+              ),
               SizedBox(
                 height: getHeight(5),
               ),

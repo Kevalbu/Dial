@@ -8,6 +8,7 @@ class CustomAppTextFormField extends StatelessWidget {
   TextFormFieldVariant? variant;
 
   TextStyle? fontStyle;
+  TextStyle? labelStyle;
   TextStyle? hintFontStyle;
 
   Alignment? alignment;
@@ -29,6 +30,7 @@ class CustomAppTextFormField extends StatelessWidget {
   int? maxLines;
 
   String? hintText;
+  String? labelText;
 
   Widget? prefix;
 
@@ -61,6 +63,8 @@ class CustomAppTextFormField extends StatelessWidget {
       this.maxLines,
       this.hintText,
       this.prefix,
+      this.labelText,
+      this.labelStyle,
       this.prefixConstraints,
       this.suffix,
       this.suffixConstraints,
@@ -109,7 +113,8 @@ class CustomAppTextFormField extends StatelessWidget {
       enabledBorder: _setBorderStyle(),
       focusedBorder: _setBorderStyle(),
       disabledBorder: _setBorderStyle(),
-      prefixIcon: prefix,
+      prefixIcon: prefix, labelText: labelText ?? "",
+      labelStyle: labelStyle ?? DL.style(14),
       prefixIconConstraints: prefixConstraints,
       suffixIcon: suffix,
       suffixIconConstraints: suffixConstraints,
@@ -145,7 +150,7 @@ class CustomAppTextFormField extends StatelessWidget {
         return OutlineInputBorder(
           borderRadius: _setOutlineBorderRadius(),
           borderSide: BorderSide(
-            color: ColorConstant.greyBack,
+            color: ColorConstant.primaryBlue,
             width: 1,
           ),
         );
@@ -155,7 +160,7 @@ class CustomAppTextFormField extends StatelessWidget {
         return OutlineInputBorder(
           borderRadius: _setOutlineBorderRadius(),
           borderSide: BorderSide(
-            color: ColorConstant.greyText,
+            color: ColorConstant.primaryBlue,
             width: 1,
           ),
         );

@@ -1,21 +1,10 @@
 import '../../../core/app_export.dart';
 
 class CRMScreenController extends GetxController {
-  @override
-  void onInit() {
-    changeRoute();
-    super.onInit();
-  }
+  RxInt selectedContacts = 0.obs;
 
-  void changeRoute() {
-    String isLogin = PrefUtils.getString(PrefsKey.authToken);
-    Future.delayed(const Duration(milliseconds: 3000), () {
-      if (isLogin == '0') {
-        Get.offAllNamed(AppRoutes.loginScreenRoute);
-      } else {
-        Get.offAllNamed(AppRoutes.dashboardScreenRout);
-      }
-    });
+  void changeContact(int index) {
+    selectedContacts.value = index;
   }
 }
 

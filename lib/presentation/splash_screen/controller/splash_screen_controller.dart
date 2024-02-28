@@ -8,12 +8,12 @@ class SplashScreenController extends GetxController {
   }
 
   void changeRoute() {
-    String isLogin = PrefUtils.getString(PrefsKey.authToken);
+    String isLogin = PrefUtils.getString(PrefsKey.isLogin);
     Future.delayed(const Duration(milliseconds: 3000), () {
-      if (isLogin == '0') {
-        Get.offAllNamed(AppRoutes.loginScreenRoute);
-      } else {
+      if (isLogin == '1') {
         Get.offAllNamed(AppRoutes.dashboardScreenRout);
+      } else {
+        Get.offAllNamed(AppRoutes.loginScreenRoute);
       }
       // Get.offAllNamed(AppRoutes.permissionScreenRout);
     });

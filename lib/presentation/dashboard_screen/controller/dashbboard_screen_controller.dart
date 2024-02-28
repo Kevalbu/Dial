@@ -13,7 +13,7 @@ class DashBoardScreenController extends GetxController {
 
   final pages = [
     DialerScreen(),
-    const CRMScreen(),
+    CRMScreen(),
     const TaskScreen(),
     const SettingsScreen()
   ];
@@ -21,6 +21,18 @@ class DashBoardScreenController extends GetxController {
   void changeTabIndex(int index) {
     tabIndex.value = index;
   }
+
+  RxInt currentTimeValue = 30.obs;
+  RxString selectedListItem = 'Default'.obs;
+
+  final List<TimeValue> lists = [
+    TimeValue(30, "Default"),
+    TimeValue(60, "List2"),
+    TimeValue(120, "TestList"),
+    TimeValue(240, "SameList"),
+    TimeValue(480, "TeamFeelTechList"),
+    TimeValue(720, "Solution"),
+  ];
 
   Future<bool> onWillPop(bool value) {
     DateTime now = DateTime.now();
@@ -33,4 +45,10 @@ class DashBoardScreenController extends GetxController {
     }
     return Future.value(true);
   }
+}
+
+class TimeValue {
+  final int key;
+  final String value;
+  TimeValue(this.key, this.value);
 }
