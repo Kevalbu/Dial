@@ -6,6 +6,7 @@ class AppString {
   static const String retry = 'Retry';
 
   static const String dial = 'Dial';
+  static const String disposecall = 'Dispose Call';
   static const String error = 'ERROR';
   static const String login = 'Login';
   static const String loginC = 'LOGIN';

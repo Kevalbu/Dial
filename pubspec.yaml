@@ -51,6 +51,7 @@ dependencies:
   flutter_expandable_fab: ^2.0.0
   dropdown_button2: ^2.3.9
   date_picker_plus: ^2.1.0
+  flutter_xlider: ^3.5.0
 
 dev_dependencies:
   flutter_test:

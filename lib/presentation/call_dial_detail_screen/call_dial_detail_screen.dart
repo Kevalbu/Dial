@@ -2,6 +2,7 @@ import 'package:date_picker_plus/date_picker_plus.dart';
 import 'package:dial/core/app_export.dart';
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_xlider/flutter_xlider.dart';
 import 'package:get/get_state_manager/src/simple/get_view.dart';
 import 'package:dial/core/utils/app_fonts.dart';
 import 'package:intl/intl.dart';
@@ -26,6 +27,13 @@ class CallDialDetailScreen extends GetWidget<CallDialDetailScreenController> {
 
     String? selectedValue;
     return Scaffold(
+        appBar: AppBar(
+          backgroundColor: ColorConstant.primaryWhite,
+          title: Text(
+            AppString.disposecall,
+            style: DL.styleDL(fontWeight: FontWeight.w600, fontSize: 18),
+          ),
+        ),
         backgroundColor: ColorConstant.primaryWhite,
         body: SafeArea(
           child: Padding(
@@ -33,8 +41,8 @@ class CallDialDetailScreen extends GetWidget<CallDialDetailScreenController> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  crossAxisAlignment: CrossAxisAlignment.start,
+                SizedBox(height: getHeight(10)),
+                Row(crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     Column(
                       children: [
@@ -61,12 +69,14 @@ class CallDialDetailScreen extends GetWidget<CallDialDetailScreenController> {
                           style: DL.styleDL(
                             fontSize: (15),
                             fontColor: ColorConstant.primaryBlack,
-                            fontWeight: FontWeight.w400,
+                            fontWeight: FontWeight.w800,
                           ),
                         ),
                       ],
                     ),
+                    SizedBox(width: getWidth(30)),
                     Column(mainAxisAlignment: MainAxisAlignment.start,
+
                       children: [
                         Text(
                           'you just speak to ',
@@ -111,75 +121,59 @@ class CallDialDetailScreen extends GetWidget<CallDialDetailScreenController> {
                   style: DL.styleDL(
                     fontSize: (12),
                     fontColor: ColorConstant.primaryBlack,
-                    fontWeight: FontWeight.w400,
+                    fontWeight: FontWeight.w800,
                   ),
                 ),
                 SizedBox(height: getHeight(10)),
                 Center(
-                  child: DropdownButtonHideUnderline(
-                    child: DropdownButton2<String>(
-                      isExpanded: true,
-                      hint: const Row(
-                        children: [
-                          Expanded(
-                            child: Text(
-                              'CALLBACK',
-                              style: TextStyle(
-                                fontSize: 16,
-                                fontWeight: FontWeight.w400,
-                                color: ColorConstant.primaryBlack,
-                              ),
-                              overflow: TextOverflow.ellipsis,
-                            ),
-                          ),
-                        ],
+                  child: Container(
+                    padding: EdgeInsets.symmetric(horizontal: 10), // Adjust padding as needed
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10), // Adjust circle radius
+                      border: Border.all(
+                        color: Colors.black26,
                       ),
-                      items: items
-                          .map((String item) => DropdownMenuItem<String>(
-                                value: item,
-                                child: Text(
-                                  item,
-                                  style: const TextStyle(
-                                    fontSize: 14,
-                                    fontWeight: FontWeight.bold,
-                                    color: Colors.black,
-                                  ),
-                                  overflow: TextOverflow.ellipsis,
+                      color: Colors.white,
+                    ),
+                    child: DropdownButtonHideUnderline(
+                      child: DropdownButton2<String>(
+                        isExpanded: true,
+                        hint: const Row(
+                          children: [
+                            Expanded(
+                              child: Text(
+                                'CALLBACK',
+                                style: TextStyle(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w400,
+                                  color: ColorConstant.primaryBlack,
                                 ),
-                              ))
-                          .toList(),
-                      value: selectedValue,
-                      onChanged: (String? value) {},
-                      buttonStyleData: ButtonStyleData(
-                        height: getHeight(40),
-                        width: getWidth(460),
-                        padding: const EdgeInsets.only(left: 14, right: 14),
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(4),
-                          border: Border.all(
-                            color: Colors.black26,
+                                overflow: TextOverflow.ellipsis,
+                              ),
+                            ),
+                          ],
+                        ),
+                        items: items
+                            .map((String item) => DropdownMenuItem<String>(
+                          value: item,
+                          child: Text(
+                            item,
+                            style: const TextStyle(
+                              fontSize: 14,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.black,
+                            ),
+                            overflow: TextOverflow.ellipsis,
                           ),
-                          color: Colors.white,
-                        ),
-                      ),
-                      iconStyleData: const IconStyleData(
-                        icon: Icon(
-                          Icons.arrow_drop_down_rounded,
-                        ),
-                        iconSize: 28,
-                        iconEnabledColor: ColorConstant.primaryBlack,
-                        iconDisabledColor: Colors.grey,
-                      ),
-                      dropdownStyleData: DropdownStyleData(
-                        maxHeight: getHeight(200),
-                        width: getWidth(460),
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(4),
-                        ),
+                        ))
+                            .toList(),
+                        value: selectedValue,
+                        onChanged: (String? value) {},
                       ),
                     ),
                   ),
                 ),
+
                 SizedBox(height: getHeight(10)),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -191,13 +185,14 @@ class CallDialDetailScreen extends GetWidget<CallDialDetailScreenController> {
                       style: DL.styleDL(
                         fontSize: 12,
                         fontColor: ColorConstant.primaryBlack,
-                        fontWeight: FontWeight.w400,
+                        fontWeight: FontWeight.w800,
                       ),
                     ),
                     SizedBox(height: getHeight(10)),
                     Container(
                       height: 40,
                       child: TextFormField(
+                        readOnly: true,
                         textAlign: TextAlign.center, // Center align the text
                         onTap: () async {
                           DateTime? pickedDate = await showDatePicker(
@@ -205,12 +200,38 @@ class CallDialDetailScreen extends GetWidget<CallDialDetailScreenController> {
                             initialDate: DateTime.now(),
                             firstDate: DateTime(1950),
                             lastDate: DateTime(2100),
+                            builder: (BuildContext context, Widget? child) {
+                              return Theme(
+                                data: ThemeData.light().copyWith(
+                                  colorScheme: const ColorScheme.light(
+                                    primary: ColorConstant.primaryBlue, // OK button color
+                                    onPrimary:  ColorConstant.primaryWhite, // Text color of OK button
+                                    surface:  ColorConstant.primaryWhite, // Cancel button color
+                                    onSurface: ColorConstant.primaryBlack, // Text color of Cancel button
+                                  ),
+                                ),
+                                child: child!,
+                              );
+                            },
                           );
 
                           if (pickedDate != null) {
                             TimeOfDay? pickedTime = await showTimePicker(
                               context: context,
                               initialTime: TimeOfDay.now(),
+                              builder: (BuildContext context, Widget? child) {
+                                return Theme(
+                                data: ThemeData.light().copyWith(
+                                  colorScheme: const ColorScheme.light(
+                                    primary: ColorConstant.primaryBlue, // OK button color
+                                    onPrimary:  ColorConstant.primaryWhite, // Text color of OK button
+                                    surface:  ColorConstant.primaryWhite, // Cancel button color
+                                    onSurface: ColorConstant.primaryBlack, // Text color of Cancel button
+                                  ),
+                                ),
+                                child: child!,
+                                );
+                              },
                             );
 
                             if (pickedTime != null) {
@@ -250,7 +271,25 @@ class CallDialDetailScreen extends GetWidget<CallDialDetailScreenController> {
                   ],
                 ),
 
-                Text('Lead Score 100%')
+                Text('Lead Score }%'),
+                Container(
+                  // width: 100,
+                  // height: 50,
+                  padding: EdgeInsets.all(50),
+                  child: FlutterSlider(onDragCompleted: (handlerIndex, lowerValue, upperValue) {
+                  },
+                    values: [0],
+                    max: 100,
+                    min: 0,
+                  ),
+                ),
+
+                SizedBox(
+                    width: getWidth(double.infinity),
+                    child:
+                    AppElevatedButton(buttonName: 'SAVE', onPressed: () {
+                      Get.toNamed(AppRoutes.callDialDetailScreenRout);
+                    })),
               ],
             ),
           ),
