@@ -2,6 +2,7 @@ import 'dart:math' as math;
 
 import 'package:call_log/call_log.dart';
 import 'package:dial/core/utils/app_date_format.dart';
+import 'package:flutter_phone_direct_caller/flutter_phone_direct_caller.dart';
 import 'package:intl/intl.dart';
 
 import '../../../core/app_export.dart';
@@ -10,6 +11,8 @@ class CustomDialerScreenController extends GetxController {
   TextEditingController pinController = TextEditingController();
   RxList<CallLogEntry> callLogList = <CallLogEntry>[].obs;
   Rx<Color> color = Colors.white.obs;
+  RxBool callLoading = false.obs;
+
   final List<Color> colorCollection = <Color>[
     Colors.green,
     ColorConstant.primaryBlue,
@@ -28,13 +31,28 @@ class CustomDialerScreenController extends GetxController {
     super.onInit();
   }
 
+  callNumber(String number) async {
+    bool? res = await FlutterPhoneDirectCaller.callNumber(number);
+
+    // print('=======>> $res');
+    print('=======>> ${DateTime.now().day}');
+  }
+
   void callLogs() async {
-    Iterable<CallLogEntry> entries = await CallLog.get();
+    // Iterable<CallLogEntry> entries = await CallLog.get();
+    callLoading.value = true;
+    var now = DateTime.now();
+    int from = now.subtract(Duration(days: 2)).millisecondsSinceEpoch;
+    int to = now.subtract(Duration(days: 0)).millisecondsSinceEpoch;
+    print('=========> ${from}   ${to}');
+    Iterable<CallLogEntry> entries =
+        await CallLog.query(dateFrom: from, dateTo: to);
     for (var item in entries) {
       print(item.name);
 
       callLogList.add(item);
       callLogList.refresh();
+      callLoading.value = false;
     }
   }
 

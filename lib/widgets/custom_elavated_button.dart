@@ -78,11 +78,10 @@ class AppElevatedButton extends StatelessWidget {
                   showTextIcon ?? false
                       ? Padding(
                           padding: const EdgeInsets.only(right: 8.0),
-                          child: SvgPicture.asset(
-                            textIcon ?? ImageConstant.icClose,
-                            height: 23,
-                          ),
-                        )
+                          child: Icon(
+                            Icons.phone_in_talk,
+                            color: ColorConstant.primaryWhite,
+                          ))
                       : const SizedBox(),
                   Text(
                     buttonName.toString(),

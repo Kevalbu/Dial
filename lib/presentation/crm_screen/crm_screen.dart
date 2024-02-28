@@ -8,14 +8,15 @@ import '../../core/utils/size_utils.dart';
 import 'controller/crm_screen_controller.dart';
 
 class CRMScreen extends GetWidget<CRMScreenController> {
-  const CRMScreen({super.key});
-
+  CRMScreen({super.key});
+  CRMScreenController controllerC = Get.put(CRMScreenController());
   @override
   Widget build(BuildContext context) {
     sizeCalculate(context);
+
     return SafeArea(
       child: Padding(
-        padding: const EdgeInsets.only(right: 16, left: 16),
+        padding: EdgeInsets.symmetric(horizontal: getWidth(16)),
         child: Column(
           children: [
             Padding(
@@ -24,7 +25,7 @@ class CRMScreen extends GetWidget<CRMScreenController> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    'Contacts',
+                    AppString.contacts,
                     style: DL.styleDL(
                         fontSize: (30),
                         fontWeight: FontWeight.bold,
@@ -44,34 +45,52 @@ class CRMScreen extends GetWidget<CRMScreenController> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                Container(
-                  child: Center(
-                    child: Text(
-                      'All Contacts',
-                      style: DL.styleDL(
-                          fontSize: (10),
-                          fontColor: ColorConstant.primaryWhite),
+                Obx(
+                  () => Bounce(
+                    onTap: () {
+                      controllerC.changeContact(0);
+                    },
+                    child: Container(
+                      height: getHeight(40),
+                      width: getWidth(100),
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(20),
+                          color: controllerC.selectedContacts.value == 0
+                              ? ColorConstant.primaryBlue
+                              : Colors.grey.shade400),
+                      child: Center(
+                        child: Text(
+                          AppString.allContacts,
+                          style: DL.styleDL(
+                              fontSize: (10),
+                              fontColor: ColorConstant.primaryWhite),
+                        ),
+                      ),
                     ),
                   ),
-                  height: getHeight(40),
-                  width: getWidth(100),
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(20),
-                      color: ColorConstant.primaryBlue),
                 ),
-                Container(
-                  height: getHeight(40),
-                  width: getWidth(100),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(20),
-                    color: Colors.grey.shade400,
-                  ),
-                  child: Center(
-                    child: Text(
-                      'My Contacts',
-                      style: DL.styleDL(
-                          fontSize: (10),
-                          fontColor: ColorConstant.primaryWhite),
+                Obx(
+                  () => Bounce(
+                    onTap: () {
+                      controllerC.changeContact(1);
+                    },
+                    child: Container(
+                      height: getHeight(40),
+                      width: getWidth(100),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(20),
+                        color: controllerC.selectedContacts.value == 1
+                            ? ColorConstant.primaryBlue
+                            : Colors.grey.shade400,
+                      ),
+                      child: Center(
+                        child: Text(
+                          AppString.myContacts,
+                          style: DL.styleDL(
+                              fontSize: (10),
+                              fontColor: ColorConstant.primaryWhite),
+                        ),
+                      ),
                     ),
                   ),
                 ),
@@ -98,8 +117,8 @@ class CRMScreen extends GetWidget<CRMScreenController> {
                     return Column(
                       children: [
                         Container(
-                          height: getHeight(40),
-                          width: getWidth(double.infinity),
+                          // height: getHeight(40),
+                          // width: getWidth(double.infinity),
                           decoration: const BoxDecoration(
                             borderRadius: BorderRadius.only(
                                 topRight: Radius.circular(10),
@@ -136,8 +155,8 @@ class CRMScreen extends GetWidget<CRMScreenController> {
                           ),
                         ),
                         Container(
-                          height: getHeight(110),
-                          width: getWidth(double.infinity),
+                          // height: getHeight(110),
+                          // width: getWidth(double.infinity),
                           decoration: const BoxDecoration(
                             borderRadius: BorderRadius.only(
                                 bottomRight: Radius.circular(10),

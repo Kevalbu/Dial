@@ -6,7 +6,32 @@ class DialerScreenController extends GetxController {
     super.onInit();
   }
 
-  TextEditingController pinController = TextEditingController();
+  late Timer timer;
+  RxInt start = 5.obs;
+  RxBool startTime = false.obs;
+  void stopTimer() {
+    timer.cancel();
+    startTime.value = false;
+    start.value = 5;
+  }
+
+  void startTimer() {
+    const oneSec = const Duration(seconds: 1);
+    startTime.value = true;
+    timer = new Timer.periodic(
+      oneSec,
+      (Timer timer) {
+        if (start.value == 0) {
+          startTime.value = false;
+
+          timer.cancel();
+          start.value = 5;
+        } else {
+          start.value--;
+        }
+      },
+    );
+  }
 }
 
 // Future<void> callDeleteAccountApi() async {
